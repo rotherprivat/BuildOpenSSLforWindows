@@ -1,4 +1,4 @@
-# Build OpenSSL V3.0.x for Windows X64 / Visual Studio VC++
+# Build OpenSSL V3.x.y for Windows X64 / Visual Studio VC++
 
 This script builds OpenSSL V3.x.y dynamic- and static- libraries and application
 
@@ -30,4 +30,4 @@ Change Variable "opensslversion=3.x.y" to the required version in GetAndBuildOpe
 
 ## Build result
 
-The build output is copied to openssl-<version>\deploy. The source folder "openssl-<version>\openssl" can be deleted afer successfull build.
+The build output is copied to openssl-\<version\>\\deploy. The source folder "openssl-\<version\>\\openssl" can be deleted afer successfull build.
