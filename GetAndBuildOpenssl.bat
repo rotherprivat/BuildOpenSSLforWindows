@@ -70,13 +70,14 @@ echo Cloning %openssltag%
 git clone --depth 1 --branch "%openssltag%" "https://github.com/openssl/openssl.git"
 IF %ERRORLEVEL% NEQ 0 exit /b %errorlevel%
 
-mkdir deploy
-set deploy=%cd%\deploy
+rem mkdir deploy
+rem set deploy=%cd%\deploy
+set deploy=D:\UsermodePrograms\%openssltag%
 
 cd openssl
 
 rem configure openssl 
-perl Configure --prefix="%deploy%" --openssldir="%deploy%" VC-WIN64A no-ssl3 no-comp no-idea no-weak-ssl-ciphers
+perl Configure --prefix="%deploy%" --openssldir="%deploy%\ssl" VC-WIN64A no-ssl3 no-comp no-idea no-weak-ssl-ciphers
 IF %ERRORLEVEL% NEQ 0 exit /b %errorlevel%
 
 rem build
