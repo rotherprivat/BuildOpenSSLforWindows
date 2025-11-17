@@ -1,5 +1,5 @@
 @echo off
-call GetAndBuildOpenssl.bat
+call GetAndBuildOpenssl.bat "%~1"
 
 IF %ERRORLEVEL% == 0 goto end
 
