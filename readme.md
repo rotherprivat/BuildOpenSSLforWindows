@@ -4,7 +4,7 @@ This script builds OpenSSL V3.x.y dynamic- and static- libraries and application
 
 ## Precondition
 
-- Windows 10 1803 or later (curl and tar is required)
+- Windows 10 1803 or later (curl and tar are required)
 - Git for Windows
 - Visual Studio 2017 or later
     - including VC++ (Desktop development) MSVC >= V14
@@ -14,10 +14,11 @@ This script builds OpenSSL V3.x.y dynamic- and static- libraries and application
 
 The script will automatically download and configure
 
-- Strawberry perl portable V5.42.0.1
-- NASM V3.01
+- Microsoft vswhere (latest) [vswhere](https://github.com/microsoft/vswhere)
+- Strawberry perl portable (V5.42.0.1): [srawberry.com](https://strawberryperl.com)
+- NASM (V3.01): [nasm.us](https://www.nasm.us)
 
-Please check [srawberry.com](https://strawberryperl.com) and [nasm.us](https://www.nasm.us) for current version and update GetAndBuildOpenssl.bat if needed.
+Please check the tools above for the actual versions.
 
 ## Update OpenSSL Version
 

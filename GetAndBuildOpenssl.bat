@@ -17,13 +17,23 @@ set nasmversion=3.01
 set nasm=nasm-%nasmversion%
 set nasmzip=%nasm%-win64.zip
 
-rem Visual Studio // precondition
-set VCX64=C:\Programme\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat
-
 chdir /d %~dp0
 
 mkdir tools
 chdir tools
+
+rem Visual Studio // precondition get path by vswhere.exe
+if exist "vswhere\" goto setvcx64env
+echo Getting: vswhere.exe
+mkdir vswhere
+curl -s -L -o vswhere\vswhere.exe "https://github.com/Microsoft/vswhere/releases/latest/download/vswhere.exe"
+IF %ERRORLEVEL% NEQ 0 exit /b %errorlevel%
+
+:setvcx64env
+echo `vswhere\vswhere.exe -latest -property InstallationPath`
+for /f "delims=" %%i in ('vswhere\vswhere.exe -latest -property InstallationPath') do (
+	set VCX64=%%i\VC\Auxiliary\Build\vcvars64.bat
+)
 
 rem Get Strawberry Perl for windows
 if exist "%sbperl%\" goto setperlenv
