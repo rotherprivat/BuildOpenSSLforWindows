@@ -26,11 +26,11 @@ Change Variable "opensslversion=3.x.y" to the required version in GetAndBuildOpe
 
 ## Build
 
-Find a base path to deploy your OpenSSL build. For example "C:\program files\openssl". Please note the build account needs write access to this folder.
+Find a base path to deploy your OpenSSL build. For example "C:\program files\openssl". Please note: the build account needs write access to this folder.
 
-- From desktop system: simply execute Startbuild.bat "\<deploy-base-path\>"
-- From build pipeline execute GetAndBuildOpenssl.bat "\<deploy-base-path\>"
+- From desktop system: execute Startbuild.bat "\<deploy-base-path\>"
+- From build pipeline: call GetAndBuildOpenssl.bat "\<deploy-base-path\>"
 
 ## Build result
 
-The build output is copied to \<deploy-base\>\\openssl-\<version\>. The source folder ".\\openssl-\<version\>" can be deleted after successful build.
+The build output is copied to \<deploy-base-path\>\\openssl-\<version\>. The source folder ".\\openssl-\<version\>" can be deleted after successful build.
