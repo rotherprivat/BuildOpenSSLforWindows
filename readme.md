@@ -9,7 +9,6 @@ This script builds OpenSSL V3.x.y dynamic- and static- libraries and application
 - Visual Studio 2017 or later
     - including VC++ (Desktop development) MSVC >= V14
 
-
 ## Additional tools
 
 The script will automatically download and configure
@@ -19,6 +18,17 @@ The script will automatically download and configure
 - NASM (V3.01): [nasm.us](https://www.nasm.us)
 
 Please check the tools above for the actual versions and update the version, folder names and download URLs in GetAndBuildOpenssl.bat.
+
+These tools are downloaded from their respective official sources as part of the build process. Users are responsible for complying with the licensing terms of these third-party tools.
+
+## Disclaimer
+
+This build script automates the download and execution of third-party tools including Strawberry Perl, NASM, and Microsoft vswhere, among others. These components are downloaded from their respective official sources.
+
+**Use at your own risk.**  
+The author(s) of this script do not guarantee the safety, integrity, or authenticity of third-party binaries. Always verify downloaded files and review external sources for any potential security risks.
+
+The author(s) are not liable for any damages, malfunctions, data loss, or security issues arising from use of this script or any software it downloads.
 
 ## Update OpenSSL Version
 
