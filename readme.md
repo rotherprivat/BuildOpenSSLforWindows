@@ -87,5 +87,3 @@ To run the build, execute one of the scripts above with option=-R and param="\<W
 Startbuild.bat -R "MyOssl"
 ```
 Example registry defined.
-
-The build output is copied to \<deploy-base-path\>\\openssl-\<version\>. The source folder ".\\openssl-\<version\>" can be deleted after successful build.
