@@ -32,15 +32,60 @@ The author(s) are not liable for any damages, malfunctions, data loss, or securi
 
 ## Update OpenSSL Version
 
-Change Variable "opensslversion=3.x.y" to the required version in GetAndBuildOpenssl.bat.
+Change the variables "opensslmajorversion=3.x" and "opensslminorversion=y" to the required version in GetAndBuildOpenssl.bat.
+For example to "opensslmajorversion=3.5" and "opensslminorversion=4" this will build the OpenSSL version 3.5.4
 
 ## Build
 
-Find a base path to deploy your OpenSSL build. For example "C:\program files\openssl". Please note: the build account needs write access to this folder.
+- From desktop system: execute Startbuild.bat \<option\> <\param\> "\<deploy-base-path\>"
+- From build pipeline: call GetAndBuildOpenssl.bat \<option\> <\param\>"\<deploy-base-path\>"
 
-- From desktop system: execute Startbuild.bat "\<deploy-base-path\>"
-- From build pipeline: call GetAndBuildOpenssl.bat "\<deploy-base-path\>"
+The script can be used to build OpenSSL in two different variants:
 
-## Build result
+### Fixed base-path
+
+Find a base path to deploy your OpenSSL build. For example: "C:\program files\openssl".
+Please note: the build account needs write access to this folder. 
+
+The path is compiled into the OpenSSL binaries and can only be overwritten by environment variables. This is suitable for local deployments, or if only the crypto libraries are required.
+
+#### Build result
+
+The build output is copied to \<deploy-base-path\>\\openssl-\<version\>. The source folder ".\\openssl-\<version\>" can be deleted after successful build.
+
+#### Run build
+
+To run the build, execute one of the scripts above with option=-B and param="\<deploy-base-path\>"
+
+```cmd
+Startbuild.bat -B "C:\program files\openssl"
+```
+Example base-path.
+
+
+### Registry defined paths
+
+Define a context name “\<WINCTX\>", that can be used to identify “your” OpenSSL deployment. No paths are compiled into the OpenSSL binaries; the required paths are specified later in the windows registry. 
+See: [OpenSSL Windows-Installation](https://github.com/openssl/openssl/blob/openssl-3.5.4/NOTES-WINDOWS.md#installation-directories).
+
+This allows you to build OpenSSL binaries and deploy them with a windows installer (not part of this project). 
+
+Nevertheless, you can take the following steps to manually install OpenSSL:
+1. Copy the build output (.\\openssl-\<version\>\\deploy) to the installation folder. For example: "C:\program files\openssl".
+2. Run “register.bat” as administrator from the installation folder 
+3. Before deleting your OpenSSL installation, you should run “unregister.bat” to remove unused registry keys and – values.
+
+#### Build result
+
+The build output is copied to .\\openssl-\<version\>\\deploy. The source folder ".\\openssl-\<version\>" can be deleted after successful build.
+
+#### Run build
+
+To run the build, execute one of the scripts above with option=-R and param="\<WINCTX\>"
+
+```cmd
+Startbuild.bat -R "MyOssl"
+```
+Example registry defined.
 
 The build output is copied to \<deploy-base-path\>\\openssl-\<version\>. The source folder ".\\openssl-\<version\>" can be deleted after successful build.

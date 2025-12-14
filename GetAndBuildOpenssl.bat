@@ -1,17 +1,40 @@
 @echo off
-
-if "%~1"=="" echo Missing base path && exit /b -1
-
-rem check for existing base path
-if not exist "%~1\" echo Base path does not exist && exit /b -1
-
-set deploy=%~1\%openssltag%
-
-echo Output folder: %deploy%
+set script_root=%~dp0
+chdir /d "%script_root%"
 
 rem openssl version
-set opensslversion=3.5.4
-set openssltag=openssl-%opensslversion%
+set opensslmajorversion=3.5
+set opensslminorversion=4
+set openssltag=openssl-%opensslmajorversion%.%opensslminorversion%
+
+if not exist "%openssltag%" mkdir "%openssltag%"
+
+rem Base Path
+if "%~1" NEQ "-R" goto check_basepath
+if "%~2"=="" echo Missing ctx && exit /b -1
+
+set deploy=%cd%\%openssltag%\deploy
+if not exist "%deploy%" mkdir "%deploy%"
+
+set OSSL_WINCTX=%~2
+set DOSSL_WINCTX=-DOSSL_WINCTX=%OSSL_WINCTX%
+
+goto get_tools
+:check_basepath
+if "%~1" NEQ "-B" echo Unknown or missing option %~1 && exit /b -1
+
+if "%~2"=="" echo Missing base path && exit /b -1
+
+rem check for existing base path
+if not exist "%~2\" echo Base path does not exist && exit /b -1
+
+set deploy=%~2\%openssltag%
+set OSSL_WINCTX=
+set DOSSL_WINCTX=
+
+:get_tools
+echo Output folder: %deploy%
+echo CTX: %OSSL_WINCTX%
 
 rem Tools
 
@@ -29,9 +52,7 @@ set nasmversion=3.01
 set nasm=nasm-%nasmversion%
 set nasmzip=%nasm%-win64.zip
 
-chdir /d %~dp0
-
-mkdir tools
+if not exist tools mkdir tools
 chdir tools
 
 rem Visual Studio // precondition get path by vswhere.exe
@@ -82,7 +103,6 @@ call "%VCX64%"
 IF %ERRORLEVEL% NEQ 0 echo Failed to set Visual Studio environment && exit /b %errorlevel%
 
 chdir ..
-mkdir "%openssltag%"
 chdir "%openssltag%"
 
 rem Get openssl source code
@@ -94,7 +114,7 @@ IF %ERRORLEVEL% NEQ 0 echo Failed to clone %openssltag% && exit /b %errorlevel%
 cd openssl
 
 rem configure openssl 
-perl Configure --prefix="%deploy%" --openssldir="%deploy%\ssl" VC-WIN64A no-ssl3 no-comp no-idea no-weak-ssl-ciphers
+perl Configure %DOSSL_WINCTX% --prefix="%deploy%" --openssldir="%deploy%\ssl" VC-WIN64A no-ssl3 no-comp no-idea no-weak-ssl-ciphers
 IF %ERRORLEVEL% NEQ 0 echo Failed to configure openssl && exit /b %errorlevel%
 
 rem build
@@ -110,8 +130,30 @@ nmake install
 IF %ERRORLEVEL% NEQ 0 echo Failed to deploy openssl && exit /b %errorlevel%
 
 rem copy static libs
+echo libssl_static.lib
 copy /y libssl_static.lib "%deploy%\lib"
+echo libcrypto_static.lib
 copy /y libcrypto_static.lib "%deploy%\lib"
+echo ossl_static.pdb
 copy /y ossl_static.pdb "%deploy%\lib"
+
+
+:register
+rem add register and unregister batch to deployment
+chdir "%script_root%"
+
+rem ready if compiled base path
+if "%OSSL_WINCTX%" == "" exit /b %errorlevel%
+
+echo register.bat
+copy /y install\register.bat "%deploy%"
+echo unregister.bat
+copy /y install\unregister.bat "%deploy%"
+
+echo Building: ossl_reg.config 
+(
+echo opensslmajorversion=%opensslmajorversion%
+echo OSSL_WINCTX=%OSSL_WINCTX%
+) >%deploy%\ossl_reg.config
 
 exit /b %errorlevel%
