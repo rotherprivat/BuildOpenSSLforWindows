@@ -60,12 +60,12 @@ To run the build, execute one of the scripts above with option=-B and param="\<d
 ```cmd
 Startbuild.bat -B "C:\program files\openssl"
 ```
-Example base-path.
+Example: Execute build with fixed base-path.
 
 
 ### Registry defined paths
 
-Define a context name “\<WINCTX\>", that can be used to identify “your” OpenSSL deployment. No paths are compiled into the OpenSSL binaries; the required paths are specified later in the windows registry. 
+Define a context name “\<WINCTX\>", that can be used to identify “your” OpenSSL deployment. For example "MyOssl". No paths are compiled into the OpenSSL binaries; the required paths are specified later in the windows registry. 
 See: [OpenSSL Windows-Installation](https://github.com/openssl/openssl/blob/openssl-3.5.4/NOTES-WINDOWS.md#installation-directories).
 
 This allows you to build OpenSSL binaries and deploy them with a windows installer (not part of this project). 
@@ -77,7 +77,7 @@ Nevertheless, you can take the following steps to manually install OpenSSL:
 
 #### Build result
 
-The build output is copied to .\\openssl-\<version\>\\deploy. The source folder ".\\openssl-\<version\>" can be deleted after successful build.
+The build output is copied to .\\openssl-\<version\>\\deploy. The source folder ".\\openssl-\<version\>\openssl" can be deleted after successful build.
 
 #### Run build
 
@@ -86,4 +86,4 @@ To run the build, execute one of the scripts above with option=-R and param="\<W
 ```cmd
 Startbuild.bat -R "MyOssl"
 ```
-Example registry defined.
+Example: Execute build with registry defined paths.
