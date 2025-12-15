@@ -1,6 +1,6 @@
 # Build OpenSSL V3.x.y for Windows X64 / Visual Studio VC++
 
-This script builds OpenSSL V3.x.y dynamic- and static- libraries and application
+This script builds OpenSSL V3.x.y dynamic- and static- libraries and application.
 
 ## Precondition
 
@@ -33,12 +33,12 @@ The author(s) are not liable for any damages, malfunctions, data loss, or securi
 ## Update OpenSSL Version
 
 Change the variables "opensslmajorversion=3.x" and "opensslminorversion=y" to the required version in GetAndBuildOpenssl.bat.
-For example to "opensslmajorversion=3.5" and "opensslminorversion=4" this will build the OpenSSL version 3.5.4
+For example to "opensslmajorversion=3.5" and "opensslminorversion=4" this will build the OpenSSL version 3.5.4.
 
 ## Build
 
-- From desktop system: execute Startbuild.bat \<option\> <\param\> "\<deploy-base-path\>"
-- From build pipeline: call GetAndBuildOpenssl.bat \<option\> <\param\>"\<deploy-base-path\>"
+- From desktop system: execute Startbuild.bat \<option\> <\param\>
+- From build pipeline: call GetAndBuildOpenssl.bat \<option\> <\param\>
 
 The script can be used to build OpenSSL in two different variants:
 
@@ -51,7 +51,7 @@ The path is compiled into the OpenSSL binaries and can only be overwritten by en
 
 #### Build result
 
-The build output is copied to \<deploy-base-path\>\\openssl-\<version\>. The source folder ".\\openssl-\<version\>" can be deleted after successful build.
+The build output is copied to "\<deploy-base-path\>\\openssl-\<version\>". The source folder ".\\openssl-\<version\>" can be deleted after successful build.
 
 #### Run build
 
@@ -71,13 +71,13 @@ See: [OpenSSL Windows-Installation](https://github.com/openssl/openssl/blob/open
 This allows you to build OpenSSL binaries and deploy them with a windows installer (not part of this project). 
 
 Nevertheless, you can take the following steps to manually install OpenSSL:
-1. Copy the build output (.\\openssl-\<version\>\\deploy) to the installation folder. For example: "C:\program files\openssl".
+1. Copy the build output (".\\openssl-\<version\>\\deploy") to the installation folder. For example: "C:\program files\openssl".
 2. Run “register.bat” as administrator from the installation folder 
 3. Before deleting your OpenSSL installation, you should run “unregister.bat” to remove unused registry keys and – values.
 
 #### Build result
 
-The build output is copied to .\\openssl-\<version\>\\deploy. The source folder ".\\openssl-\<version\>\openssl" can be deleted after successful build.
+The build output is copied to ".\\openssl-\<version\>\\deploy". The source folder ".\\openssl-\<version\>\openssl" can be deleted after successful build.
 
 #### Run build
 
