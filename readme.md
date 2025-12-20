@@ -37,8 +37,8 @@ For example to "opensslmajorversion=3.5" and "opensslminorversion=4" this will b
 
 ## Build
 
-- From desktop system: execute Startbuild.bat \<option\> <\param\>
-- From build pipeline: call GetAndBuildOpenssl.bat \<option\> <\param\>
+- From desktop system: execute Startbuild.bat \<option\> \<param\>
+- From build pipeline: call GetAndBuildOpenssl.bat \<option\> \<param\>
 
 The script can be used to build OpenSSL in two different variants:
 
