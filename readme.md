@@ -35,6 +35,8 @@ The author(s) are not liable for any damages, malfunctions, data loss, or securi
 Change the variables "opensslmajorversion=3.x" and "opensslminorversion=y" to the required version in GetAndBuildOpenssl.bat.
 For example to "opensslmajorversion=3.5" and "opensslminorversion=4" this will build the OpenSSL version 3.5.4.
 
+See [OpenSSL releases](https://github.com/openssl/openssl/releases) on GitHub.
+
 ## Build
 
 - From desktop system: execute Startbuild.bat \<option\> \<param\>
