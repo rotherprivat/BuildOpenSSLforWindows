@@ -4,7 +4,7 @@ chdir /d "%script_root%"
 
 rem openssl version
 set opensslmajorversion=3.5
-set opensslminorversion=4
+set opensslminorversion=5
 set openssltag=openssl-%opensslmajorversion%.%opensslminorversion%
 
 if not exist "%openssltag%" mkdir "%openssltag%"
