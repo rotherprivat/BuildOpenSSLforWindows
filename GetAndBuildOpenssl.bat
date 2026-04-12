@@ -4,7 +4,7 @@ chdir /d "%script_root%"
 
 rem openssl version
 set opensslmajorversion=3.5
-set opensslminorversion=5
+set opensslminorversion=6
 set openssltag=openssl-%opensslmajorversion%.%opensslminorversion%
 
 if not exist "%openssltag%" mkdir "%openssltag%"
@@ -40,10 +40,10 @@ rem Tools
 
 rem vswhere always latest, no special versioning
 
-rem Strawberry Perl latest working 5.42.0.1
+rem Strawberry Perl latest working 5.42.2.1
 rem See https://strawberryperl.com
-set sbversion=5.42.0.1
-set sbfolder=SP_54201_64bit
+set sbversion=5.42.2.1
+set sbfolder=SP_%sbversion:.=%_64bit
 set sbperl=strawberry-perl-%sbversion%
 set sbperlzip=%sbperl%-64bit-portable.zip
 

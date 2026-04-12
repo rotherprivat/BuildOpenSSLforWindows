@@ -14,7 +14,7 @@ This script builds OpenSSL V3.x.y dynamic- and static- libraries and application
 The script will automatically download and configure
 
 - Microsoft vswhere (latest) [vswhere](https://github.com/microsoft/vswhere)
-- Strawberry perl portable (V5.42.0.1): [srawberryperl.com](https://strawberryperl.com)
+- Strawberry perl portable (V5.42.2.1): [srawberryperl.com](https://strawberryperl.com)
 - NASM (V3.01): [nasm.us](https://www.nasm.us)
 
 Please check the tools above for the actual versions and update the version, folder names and download URLs in GetAndBuildOpenssl.bat.
@@ -33,7 +33,7 @@ The author(s) are not liable for any damages, malfunctions, data loss, or securi
 ## Update OpenSSL Version
 
 Change the variables "opensslmajorversion=3.x" and "opensslminorversion=y" to the required version in GetAndBuildOpenssl.bat.
-For example to "opensslmajorversion=3.5" and "opensslminorversion=4" this will build the OpenSSL version 3.5.4.
+For example to "opensslmajorversion=3.5" and "opensslminorversion=6" this will build the OpenSSL version 3.5.6.
 
 See [OpenSSL releases](https://github.com/openssl/openssl/releases) on GitHub.
 
