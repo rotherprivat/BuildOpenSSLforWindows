@@ -2,10 +2,12 @@
 set script_root=%~dp0
 chdir /d "%script_root%"
 
+for /F "eol=; tokens=*" %%g in (%script_root%versions.config) do (set %%g)
+
 rem openssl version
-set opensslmajorversion=3.5
-set opensslminorversion=6
-set openssltag=openssl-%opensslmajorversion%.%opensslminorversion%
+rem set OPENSSL_VERSION_MAJOR_MINOR=3.5
+rem set OPENSSL_VERSION_PATCH=6
+set openssltag=openssl-%OPENSSL_VERSION_MAJOR_MINOR%.%OPENSSL_VERSION_PATCH%
 
 if not exist "%openssltag%" mkdir "%openssltag%"
 
@@ -42,28 +44,31 @@ rem vswhere always latest, no special versioning
 
 rem Strawberry Perl latest working 5.42.2.1
 rem See https://strawberryperl.com
-set sbversion=5.42.2.1
-set sbfolder=SP_%sbversion:.=%_64bit
-set sbperl=strawberry-perl-%sbversion%
+rem set STRAWBERRY_PERL_VERSION=5.42.2.1
+set sbfolder=SP_%STRAWBERRY_PERL_VERSION:.=%_64bit
+set sbperl=strawberry-perl-%STRAWBERRY_PERL_VERSION%
 set sbperlzip=%sbperl%-64bit-portable.zip
 
 rem nasm
-set nasmversion=3.01
-set nasm=nasm-%nasmversion%
+rem set NASM_VERSION=3.01
+set nasm=nasm-%NASM_VERSION%
 set nasmzip=%nasm%-win64.zip
 
 if not exist tools mkdir tools
 chdir tools
 
 rem Visual Studio // precondition get path by vswhere.exe
-if exist "vswhere\" goto setvcx64env
+rem set VSWHERE_VERSION=3.1.7
+set vswhere=vswhere-%VSWHERE_VERSION%
+
+if exist "%vswhere%\" goto setvcx64env
 echo Getting: vswhere.exe
-mkdir vswhere
-curl -s -L -o vswhere\vswhere.exe "https://github.com/Microsoft/vswhere/releases/latest/download/vswhere.exe"
+mkdir "%vswhere%"
+curl -s -L -o "%vswhere%\vswhere.exe" "https://github.com/Microsoft/vswhere/releases/download/%VSWHERE_VERSION%/vswhere.exe"
 IF %ERRORLEVEL% NEQ 0 echo Failed to download vswhere && exit /b %errorlevel%
 
 :setvcx64env
-for /f "delims=" %%i in ('vswhere\vswhere.exe -latest -property InstallationPath') do (
+for /f "delims=" %%i in ('%vswhere%\vswhere.exe -latest -property InstallationPath') do (
 	set VCX64=%%i\VC\Auxiliary\Build\vcvars64.bat
 )
 
@@ -86,7 +91,7 @@ echo Installed: %sbperl%
 rem Get NASM for windows
 if exist "%nasm%\" goto setnasmenv
 echo Getting: %nasm%
-curl -s -o "%nasmzip%" "https://www.nasm.us/pub/nasm/releasebuilds/%nasmversion%/win64/%nasmzip%"
+curl -s -o "%nasmzip%" "https://www.nasm.us/pub/nasm/releasebuilds/%NASM_VERSION%/win64/%nasmzip%"
 IF %ERRORLEVEL% NEQ 0 echo Failed to download nasm && exit /b %errorlevel%
 
 tar -xf "%nasmzip%"
@@ -152,7 +157,7 @@ copy /y install\unregister.bat "%deploy%"
 
 echo Building: ossl_reg.config 
 (
-echo opensslmajorversion=%opensslmajorversion%
+echo OPENSSL_VERSION_MAJOR_MINOR=%OPENSSL_VERSION_MAJOR_MINOR%
 echo OSSL_WINCTX=%OSSL_WINCTX%
 ) >%deploy%\ossl_reg.config
 

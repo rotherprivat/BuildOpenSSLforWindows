@@ -13,11 +13,13 @@ This script builds OpenSSL V3.x.y dynamic- and static- libraries and application
 
 The script will automatically download and configure
 
-- Microsoft vswhere (latest) [vswhere](https://github.com/microsoft/vswhere)
-- Strawberry perl portable (V5.42.2.1): [srawberryperl.com](https://strawberryperl.com)
-- NASM (V3.01): [nasm.us](https://www.nasm.us)
+| Tool | Version | URL | Version.Config<BR>Variable |
+| --- | --- | --- | --- |
+| Microsoft vswhere | 3.1.7 | [vswhere](https://github.com/microsoft/vswhere) | VSWHERE_VERSION |
+| Strawberry perl portable | 5.42.2.1 | [srawberryperl.com](https://strawberryperl.com) | STRAWBERRY_PERL_VERSION |
+| NASM | 3.01 | [nasm.us](https://www.nasm.us) | NASM_VERSION |
 
-Please check the tools above for the actual versions and update the version, folder names and download URLs in GetAndBuildOpenssl.bat.
+Please check the tools above for the actual versions and update the variables in version.config. Folder names and download URLs are calculated in GetAndBuildOpenssl.bat.
 
 These tools are downloaded from their respective official sources as part of the build process. Users are responsible for complying with the licensing terms of these third-party tools.
 
@@ -32,8 +34,8 @@ The author(s) are not liable for any damages, malfunctions, data loss, or securi
 
 ## Update OpenSSL Version
 
-Change the variables "opensslmajorversion=3.x" and "opensslminorversion=y" to the required version in GetAndBuildOpenssl.bat.
-For example to "opensslmajorversion=3.5" and "opensslminorversion=6" this will build the OpenSSL version 3.5.6.
+Change the variables "OPENSSL_VERSION_MAJOR_MINOR=3.x" and "OPENSSL_VERSION_PATCH=y" to the required version in version.comfig
+For example to "OPENSSL_VERSION_MAJOR_MINOR=3.5" and "OPENSSL_VERSION_PATCH=6" this will build the OpenSSL version 3.5.6.
 
 See [OpenSSL releases](https://github.com/openssl/openssl/releases) on GitHub.
 
