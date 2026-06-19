@@ -35,7 +35,7 @@ The author(s) are not liable for any damages, malfunctions, data loss, or securi
 ## Update OpenSSL Version
 
 Change the variables "OPENSSL_VERSION_MAJOR_MINOR=3.x" and "OPENSSL_VERSION_PATCH=y" to the required version in **version.config**
-For example to "OPENSSL_VERSION_MAJOR_MINOR=3.5" and "OPENSSL_VERSION_PATCH=6" this will build the OpenSSL version 3.5.6.
+For example to "OPENSSL_VERSION_MAJOR_MINOR=3.5" and "OPENSSL_VERSION_PATCH=7" this will build the OpenSSL version 3.5.7.
 
 See [OpenSSL releases](https://github.com/openssl/openssl/releases) on GitHub.
 
