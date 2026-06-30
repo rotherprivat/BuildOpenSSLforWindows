@@ -17,7 +17,7 @@ The script will automatically download and configure
 | --- | --- | --- | --- |
 | Microsoft vswhere | 3.1.7 | [vswhere](https://github.com/microsoft/vswhere) | VSWHERE_VERSION |
 | Strawberry perl portable | 5.42.2.1 | [srawberryperl.com](https://strawberryperl.com) | STRAWBERRY_PERL_VERSION |
-| NASM | 3.01 | [nasm.us](https://www.nasm.us) | NASM_VERSION |
+| NASM | 3.02 | [nasm.us](https://www.nasm.us) | NASM_VERSION |
 
 Please check the tools above for the actual versions and update the variables in **version.config**. Folder names and download URLs are calculated in GetAndBuildOpenssl.bat.
 
