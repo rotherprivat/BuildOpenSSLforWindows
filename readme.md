@@ -16,7 +16,7 @@ The script will automatically download and configure
 | Tool | Version | URL | Variable in<BR>version.config |
 | --- | --- | --- | --- |
 | Microsoft vswhere | 3.1.7 | [vswhere](https://github.com/microsoft/vswhere) | VSWHERE_VERSION |
-| Strawberry perl portable | 5.42.2.1 | [srawberryperl.com](https://strawberryperl.com) | STRAWBERRY_PERL_VERSION |
+| Strawberry perl portable | 5.42.3.1 | [srawberryperl.com](https://strawberryperl.com) | STRAWBERRY_PERL_VERSION |
 | NASM | 3.02 | [nasm.us](https://www.nasm.us) | NASM_VERSION |
 
 Please check the tools above for the actual versions and update the variables in **version.config**. Folder names and download URLs are calculated in GetAndBuildOpenssl.bat.
@@ -35,7 +35,7 @@ The author(s) are not liable for any damages, malfunctions, data loss, or securi
 ## Update OpenSSL Version
 
 Change the variables "OPENSSL_VERSION_MAJOR_MINOR=3.x" and "OPENSSL_VERSION_PATCH=y" to the required version in **version.config**
-For example to "OPENSSL_VERSION_MAJOR_MINOR=3.5" and "OPENSSL_VERSION_PATCH=7" this will build the OpenSSL version 3.5.7.
+For example to "OPENSSL_VERSION_MAJOR_MINOR=3.5" and "OPENSSL_VERSION_PATCH=8" this will build the OpenSSL version 3.5.8.
 
 See [OpenSSL releases](https://github.com/openssl/openssl/releases) on GitHub.
 
